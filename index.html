@@ -1,57 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Lista de Regalos - Baby Shower de Samuel</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Regalos para Samuel</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .header {
-      max-width: 800px;
-      margin: 40px auto; /* centra horizontalmente */
-      text-align: center;
-      padding: 30px 20px;
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .header h2 {
-      color: #3b7d4e; /* verde menta */
-      margin-bottom: 20px;
-    }
-
-    .header p {
-      margin-bottom: 15px;
-      line-height: 1.6;
-      color: #4b4b4b;
-    }
-
-    #lista-regalos {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f4ed;
+      color: #3e3e3e;
       padding: 20px;
+    }
+    .header {
+      background-color: #e4f3ed;
+      border-left: 6px solid #9cbf9a;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+    .section-title {
+      font-size: 1.4em;
+      margin-top: 30px;
+      color: #6a8b66;
+    }
+    .gift-item {
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-left: 6px solid #c4b197;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+    .gift-item h4 {
+      margin: 0 0 5px 0;
+    }
+    .gift-item button {
+      background-color: #88bfa4;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .gift-item button[disabled] {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    .form-container {
+      margin-top: 10px;
+    }
+    input, textarea {
+      display: block;
+      margin-top: 8px;
+      padding: 6px;
+      width: 95%;
     }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <h2>💚 Elige tu regalito para el Baby Shower de Samuel 🐘🌿</h2>
-    <p>Hola, familia y amigos:</p>
-    <p>Si están leyendo este mensaje es porque son personas muy importantes para mis papitos y para mí. Sin duda, este es un momento muy especial para todos, y si Dios lo permite, ¡muy pronto podremos conocernos! 👶💛</p>
-    <p>Aquí encontrarán una lista de regalitos que servirá como guía para prepararse para mi llegada. No es algo obligatorio, solo una ayuda por si desean contribuir con algo que aún necesitamos.</p>
-    <p>💛 También pueden ser detalles de segunda mano, siempre que estén en buen estado —lo importante es el cariño con que lo den.</p>
-    <p>🎁 Y si lo desean, pueden unirse varias personas para regalar algo en conjunto, especialmente si se trata de artículos más grandes.</p>
-    <p>Cualquier detalle que quieran brindarnos —grande o pequeño, nuevo o con historia— será recibido con muchísimo amor y agradecimiento.</p>
-    <p>Si eligen algo de la lista, pueden dejar su nombre o avisarle a mis papitos para evitar repeticiones y así aprovechar todo al máximo.</p>
-    <p>Si ven algo con (Ya fue elegido) es porque ya alguien más lo obsequió. Y tendrán que elegir otro 💚</p>
-    <p>Gracias por acompañar a mis papitos en este momento tan especial. ¡Nos llena de alegría saber que están compartiendo con nosotros esta hermosa espera!</p>
-    <p>Con cariño 💛 <strong>Samuel</strong></p>
-  </div>
+<div class="header">
+  <h2>💚 Elige tu regalito para el Baby Shower de Samuel 🐘🌿</h2>
+  <p>Hola, familia y amigos:</p>
+  <p>Si están leyendo este mensaje es porque son personas muy importantes para mis papitos y para mí. Sin duda, este es un momento muy especial para todos, y si Dios lo permite, ¡muy pronto podremos conocernos! 👶💛</p>
+  <p>Aquí encontrarán una lista de regalitos que servirá como guía para prepararse para mi llegada. No es algo obligatorio, solo una ayuda por si desean contribuir con algo que aún necesitamos.</p>
+  <p>💛 También pueden ser detalles de segunda mano, siempre que estén en buen estado —lo importante es el cariño con que lo den.</p>
+  <p>🎁 Y si lo desean, pueden unirse varias personas para regalar algo en conjunto, especialmente si se trata de artículos más grandes.</p>
+  <p>Cualquier detalle que quieran brindarnos —grande o pequeño, nuevo o con historia— será recibido con muchísimo amor y agradecimiento.</p>
+  <p>Si eligen algo de la lista, pueden dejar su nombre o avisarle a mis papitos para evitar repeticiones y así aprovechar todo al máximo.</p>
+  <p>Si ven algo con (Ya fue elegido) es porque ya alguien más lo obsequió. Y tendrán que elegir otro 💚</p>
+  <p>Gracias por acompañar a mis papitos en este momento tan especial. ¡Nos llena de alegría saber que están compartiendo con nosotros esta hermosa espera!</p>
+  <p>Con cariño 💛 <strong>Samuel</strong></p>
+</div>
 
 <div id="lista-regalos"></div>
 
