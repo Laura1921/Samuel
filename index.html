@@ -2,183 +2,133 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Regalos para Samuel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Regalos - Baby Shower</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f7f4ed;
-      color: #3e3e3e;
-      padding: 20px;
+      background-color: #f2f1eb;
+      color: #3d3d3d;
+      margin: 0;
+      padding: 1rem;
     }
-    .header {
-      background-color: #e4f3ed;
-      border-left: 6px solid #9cbf9a;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 30px;
+    h1 {
+      text-align: center;
+      color: #6b8e23;
     }
-    .section-title {
-      font-size: 1.4em;
-      margin-top: 30px;
-      color: #6a8b66;
+    .seccion {
+      margin: 2rem 0;
     }
-    .gift-item {
+    .seccion h2 {
+      background-color: #a2d5ab;
+      color: #3d3d3d;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+    }
+    .regalo {
       background-color: #ffffff;
-      border: 1px solid #ccc;
-      border-left: 6px solid #c4b197;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 8px;
+      border-left: 6px solid #c2b280;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    .gift-item h4 {
-      margin: 0 0 5px 0;
+    .regalo.tomado {
+      background-color: #ddd;
+      text-decoration: line-through;
+      opacity: 0.6;
     }
-    .gift-item button {
-      background-color: #88bfa4;
+    button {
+      background-color: #6b8e23;
       color: white;
       border: none;
-      padding: 8px 12px;
+      padding: 0.5rem 1rem;
+      border-radius: 0.3rem;
       cursor: pointer;
-      border-radius: 5px;
     }
-    .gift-item button[disabled] {
-      background-color: #ccc;
+    button:disabled {
+      background-color: #999;
       cursor: not-allowed;
-    }
-    .form-container {
-      margin-top: 10px;
-    }
-    input, textarea {
-      display: block;
-      margin-top: 8px;
-      padding: 6px;
-      width: 95%;
     }
   </style>
 </head>
 <body>
+  <h1>Lista de Regalos para Samuel 🍼</h1>
+  <div id="contenedor"></div>
 
-<div class="header">
-  <h2>💚 Elige tu regalito para el Baby Shower de Samuel 🐘🌿</h2>
-  <p>Hola, familia y amigos:</p>
-  <p>Si están leyendo este mensaje es porque son personas muy importantes para mis papitos y para mí. Sin duda, este es un momento muy especial para todos, y si Dios lo permite, ¡muy pronto podremos conocernos! 👶💛</p>
-  <p>Aquí encontrarán una lista de regalitos que servirá como guía para prepararse para mi llegada. No es algo obligatorio, solo una ayuda por si desean contribuir con algo que aún necesitamos.</p>
-  <p>💛 También pueden ser detalles de segunda mano, siempre que estén en buen estado —lo importante es el cariño con que lo den.</p>
-  <p>🎁 Y si lo desean, pueden unirse varias personas para regalar algo en conjunto, especialmente si se trata de artículos más grandes.</p>
-  <p>Cualquier detalle que quieran brindarnos —grande o pequeño, nuevo o con historia— será recibido con muchísimo amor y agradecimiento.</p>
-  <p>Si eligen algo de la lista, pueden dejar su nombre o avisarle a mis papitos para evitar repeticiones y así aprovechar todo al máximo.</p>
-  <p>Si ven algo con (Ya fue elegido) es porque ya alguien más lo obsequió. Y tendrán que elegir otro 💚</p>
-  <p>Gracias por acompañar a mis papitos en este momento tan especial. ¡Nos llena de alegría saber que están compartiendo con nosotros esta hermosa espera!</p>
-  <p>Con cariño 💛 <strong>Samuel</strong></p>
-</div>
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbz6xCgS4V4m51VwUvHNW2D0OAZ6S6viay_70Y4EUtd_Ox9jC_8UziW_8XrZybvqnmJ9/exec";
 
-<div id="lista-regalos"></div>
+    async function cargarRegalos() {
+      const res = await fetch(scriptURL);
+      const data = await res.json();
 
-<script>
-  const regalos = [
-    {
-      categoria: "🧸 Ropa",
-      items: [
-        "Cobija Térmica + Pañal Etapa 4",
-        "Cobija Ligera o cobertor + Pañal Etapa 4",
-        "Sleeping 3 - 6 meses + Pañal Etapa 4",
-        "Pijama enteriza 3 - 6 meses + Pañal Etapa 4",
-        "Medias 3 - 6 meses y Gorros + Pañal Etapa 4",
-        "Rodilleras + medias 6 meses + Pañal Etapa 3",
-        "Bodys 3- 6 meses + Pañal Etapa 3",
-        "Bodys 6 - 12 meses + Pañal Etapa 3",
-        "Conjunto 3 meses + Pañal Etapa 3",
-        "Conjunto 6 meses + Pañal Etapa 3",
-        "Sudadera 3 - 6 meses + Pañal Etapa 4",
-        "Fajeros + Camisas de balletilla 3 - 6 meses",
-        "Ruana + Pañal etapa 4"
-      ]
-    },
-    {
-      categoria: "🛁 Cuidado e Higiene",
-      items: [
-        "Kit de baño + Pañitos",
-        "Kit de aseo + Pañitos",
-        "Termo 1.5 Ltrs + Pañitos",
-        "Teteros Avent o Dr. Brown's",
-        "Bañera o Tina plegable + Pañitos",
-        "Toalla y Termómetro + Pañitos",
-        "Toallas de Lactancia + Pañales etapa 0",
-        "Primera muda + Pañales etapa 1",
-        "Baberos en tela + Pañal Etapa 3",
-        "Babero recolector + Pañal Etapa 3",
-        "Pañalera tipo morral + Pañal Etapa 3",
-        "Almohada antireflujo + Pañitos"
-      ]
-    },
-    {
-      categoria: "🧸 Artículos grandes",
-      items: [
-        "Coche tipo maleta + Silla de carro",
-        "Cómoda Cambiador (puede ser regalo grupal)",
-        "Ropero Closet (puede ser regalo grupal)",
-        "Gimnasio",
-        "Móvil",
-        "Tapete Alfombra Plegable Reversible",
-        "Cargador Silla Ergonómico",
-        "Fular",
-        "Set vajilla bebé silicona",
-        "Andadera",
-        "Silla comedor"
-      ]
-    }
-  ];
+      const tipos = {
+        "Ropa": [],
+        "Cuidado": [],
+        "Grandes": []
+      };
 
-  const contenedor = document.getElementById("lista-regalos");
+      data.forEach(item => {
+        let tipo = "Ropa";
+        if (item.nombre.includes("Cobija Termica + Pañal Etapa 4") || item.nombre.includes("Cobija Termica + Pañal Etapa 4") || item.nombre.includes("Comoda") || item.nombre.includes("Ropero") || item.nombre.includes("Tapete") || item.nombre.includes("Silla")) {
+          tipo = "Grandes";
+        } else if (item.nombre.includes("Kit") || item.nombre.includes("Pañitos") || item.nombre.includes("Pañales") || item.nombre.includes("Termometro")) {
+          tipo = "Cuidado";
+        }
+        tipos[tipo].push(item);
+      });
 
-  regalos.forEach((cat) => {
-    const titulo = document.createElement("h3");
-    titulo.className = "section-title";
-    titulo.textContent = cat.categoria;
-    contenedor.appendChild(titulo);
+      const contenedor = document.getElementById("contenedor");
+      Object.keys(tipos).forEach(tipo => {
+        const seccion = document.createElement("div");
+        seccion.className = "seccion";
+        seccion.innerHTML = `<h2>${tipo}</h2>`;
 
-    cat.items.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "gift-item";
-      const id = cat.categoria.replace(/\s/g, '') + "-" + index;
-      const saved = JSON.parse(localStorage.getItem(id));
+        tipos[tipo].forEach(regalo => {
+          const div = document.createElement("div");
+          div.className = "regalo" + (regalo.estado === "Tomado" ? " tomado" : "");
 
-      div.innerHTML = `
-        <h4 id="label-${id}">${saved ? item + ' (Ya fue elegido por ' + saved.nombre + ')' : item}</h4>
-        <button id="boton-${id}" onclick="mostrarFormulario('${id}')" ${saved ? 'disabled' : ''}>Lo elijo 🎁</button>
-        <div class="form-container" id="form-${id}" style="display: none;">
-          <input type="text" id="nombre-${id}" placeholder="Tu nombre" />
-          <textarea id="mensaje-${id}" placeholder="Mensaje para Samuel (opcional)"></textarea>
-          <button onclick="confirmar('${id}')">Confirmar elección ✅</button>
-        </div>
-      `;
-      contenedor.appendChild(div);
-    });
-  });
+          const span = document.createElement("span");
+          span.textContent = regalo.nombre;
 
-  function mostrarFormulario(id) {
-    document.getElementById(`form-${id}`).style.display = "block";
-    document.getElementById(`boton-${id}`).disabled = true;
-  }
+          const boton = document.createElement("button");
+          boton.textContent = regalo.estado === "Tomado" ? "Tomado" : "Elegir";
+          boton.disabled = regalo.estado === "Tomado";
 
-  function confirmar(id) {
-    const nombre = document.getElementById(`nombre-${id}`).value.trim();
-    if (nombre === "") {
-      alert("Por favor escribe tu nombre para confirmar el regalo.");
-      return;
+          boton.onclick = () => {
+            const nombre = prompt("¿Cuál es tu nombre?");
+            const mensaje = prompt("¿Quieres dejar un mensaje?");
+            if (nombre) {
+              const formData = new FormData();
+              formData.append("regalo", regalo.nombre);
+              formData.append("nombre", nombre);
+              formData.append("mensaje", mensaje);
+              fetch(scriptURL, { method: "POST", body: formData })
+                .then(res => res.text())
+                .then(msg => {
+                  alert(msg);
+                  location.reload();
+                });
+            }
+          };
+
+          div.appendChild(span);
+          div.appendChild(boton);
+          seccion.appendChild(div);
+        });
+
+        contenedor.appendChild(seccion);
+      });
     }
 
-    // Guardar elección en localStorage
-    localStorage.setItem(id, JSON.stringify({ nombre }));
-
-    const label = document.getElementById(`label-${id}`);
-    label.innerText += ` (Ya fue elegido por ${nombre})`;
-
-    document.getElementById(`form-${id}`).style.display = "none";
-    document.getElementById(`boton-${id}`).style.display = "none";
-  }
-</script>
+    cargarRegalos();
+  </script>
+</body>
+</html>
 
 </body>
 </html>
