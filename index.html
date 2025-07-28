@@ -1,180 +1,204 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Regalos para Samuel</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Regalos - Samuel</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f7f4ed;
-      color: #3e3e3e;
-      padding: 20px;
+      background-color: #f2f2ea;
+      color: #3d3d3d;
+      margin: 0;
+      padding: 0;
     }
-    .header {
-      background-color: #e4f3ed;
-      border-left: 6px solid #9cbf9a;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 30px;
+
+    header {
+      background-color: #b9d8b1;
+      color: #3d3d3d;
+      text-align: center;
+      padding: 2rem 1rem 1rem;
     }
-    .section-title {
-      font-size: 1.4em;
-      margin-top: 30px;
-      color: #6a8b66;
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
     }
-    .gift-item {
+
+    .intro {
+      max-width: 700px;
+      margin: 1rem auto;
+      padding: 0 1rem;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    .categoria {
+      background-color: #e6efe0;
+      padding: 1rem;
+      border-radius: 10px;
+      margin: 1.5rem auto;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    .categoria h2 {
+      border-bottom: 2px solid #98cba0;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .regalo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background-color: #ffffff;
       border: 1px solid #ccc;
-      border-left: 6px solid #c4b197;
-      padding: 15px;
-      margin-bottom: 10px;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
       border-radius: 8px;
     }
-    .gift-item h4 {
-      margin: 0 0 5px 0;
-    }
-    .gift-item button {
-      background-color: #88bfa4;
-      color: white;
+
+    .regalo button {
+      background-color: #c1daca;
+      color: #3d3d3d;
       border: none;
-      padding: 8px 12px;
-      cursor: pointer;
+      padding: 0.5rem 1rem;
       border-radius: 5px;
+      cursor: pointer;
     }
-    .gift-item button[disabled] {
-      background-color: #ccc;
+
+    .regalo button:disabled {
+      background-color: #ddd;
       cursor: not-allowed;
     }
-    .form-container {
-      margin-top: 10px;
+
+    form {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
     }
-    input, textarea {
-      display: block;
-      margin-top: 8px;
-      padding: 6px;
-      width: 95%;
+
+    form input,
+    form textarea {
+      margin: 0.25rem 0;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
     }
   </style>
 </head>
+
 <body>
+  <header>
+    <h1>Lista de Regalos para Samuel 🍼</h1>
+  </header>
+  <div class="intro">
+    <p>
+      ¡Hola, familia y amigos!<br><br>
+      Si están leyendo esto es porque son personas muy importantes para mis papitos y para mí. Aquí encontrarán una lista de regalitos pensada con mucho amor, por si desean acompañarnos en esta dulce espera.
+    </p>
+  </div>
 
-<div class="header">
-  <h2>💚 Elige tu regalito para el Baby Shower de Samuel 🐘🌿</h2>
-  <p>Hola, familia y amigos:</p>
-  <p>Si están leyendo este mensaje es porque son personas muy importantes para mis papitos y para mí. Sin duda, este es un momento muy especial para todos, y si Dios lo permite, ¡muy pronto podremos conocernos! 👶💛</p>
-  <p>Aquí encontrarán una lista de regalitos que servirá como guía para prepararse para mi llegada. No es algo obligatorio, solo una ayuda por si desean contribuir con algo que aún necesitamos.</p>
-  <p>💛 También pueden ser detalles de segunda mano, siempre que estén en buen estado —lo importante es el cariño con que lo den.</p>
-  <p>🎁 Y si lo desean, pueden unirse varias personas para regalar algo en conjunto, especialmente si se trata de artículos más grandes.</p>
-  <p>Cualquier detalle que quieran brindarnos —grande o pequeño, nuevo o con historia— será recibido con muchísimo amor y agradecimiento.</p>
-  <p>Si eligen algo de la lista, pueden dejar su nombre o avisarle a mis papitos para evitar repeticiones y así aprovechar todo al máximo.</p>
-  <p>Si ven algo con (Ya fue elegido) es porque ya alguien más lo obsequió. Y tendrán que elegir otro 💚</p>
-  <p>Gracias por acompañar a mis papitos en este momento tan especial. ¡Nos llena de alegría saber que están compartiendo con nosotros esta hermosa espera!</p>
-  <p>Con cariño 💛 <strong>Samuel</strong></p>
-</div>
+  <div id="contenedor-regalos"></div>
 
-<div id="lista-regalos"></div>
-
-<script>
-  const regalos = [
-    {
-      categoria: "🧸 Ropa",
-      items: [
-        "Cobija Térmica + Pañal Etapa 4",
-        "Cobija Ligera o cobertor + Pañal Etapa 4",
+  <script>
+    const regalos = {
+      "Ropa": [
+        "Cobija Termica + Pañal Etapa 4",
+        "Cobija Ligera + Pañal Etapa 4",
+        "Cobertor + Pañal Etapa 4",
         "Sleeping 3 - 6 meses + Pañal Etapa 4",
+        "Sleeping 6 - 12 meses + Pañal Etapa 4",
         "Pijama enteriza 3 - 6 meses + Pañal Etapa 4",
+        "Pijama enteriza 3 - 6 meses + Pañal Etapa 4",
+        "Pijama enteriza 6 -12 meses + Pañal Etapa 4",
+        "Pijama enteriza 6 -12 meses + Pañal Etapa 4",
         "Medias 3 - 6 meses y Gorros + Pañal Etapa 4",
-        "Rodilleras + medias 6 meses + Pañal Etapa 3",
+        "Medias 6 - 12 meses y Gorros + Pañal Etapa 4",
+        "Rodilleras + medias",
+        "Bodys 3- 6 meses + Pañal Etapa 3",
         "Bodys 3- 6 meses + Pañal Etapa 3",
         "Bodys 6 - 12 meses + Pañal Etapa 3",
-        "Conjunto 3 meses + Pañal Etapa 3",
-        "Conjunto 6 meses + Pañal Etapa 3",
-        "Sudadera 3 - 6 meses + Pañal Etapa 4",
-        "Fajeros + Camisas de balletilla 3 - 6 meses",
-        "Ruana + Pañal etapa 4"
-      ]
-    },
-    {
-      categoria: "🛁 Cuidado e Higiene",
-      items: [
-        "Kit de baño + Pañitos",
-        "Kit de aseo + Pañitos",
-        "Termo 1.5 Ltrs + Pañitos",
-        "Teteros Avent o Dr. Brown's",
-        "Bañera o Tina plegable + Pañitos",
-        "Toalla y Termómetro + Pañitos",
-        "Toallas de Lactancia + Pañales etapa 0",
-        "Primera muda + Pañales etapa 1",
+        "Bodys 6 - 12 meses + Pañal Etapa 3",
         "Baberos en tela + Pañal Etapa 3",
         "Babero recolector + Pañal Etapa 3",
+        "Conjunto 3 meses + Pañal Etapa 3",
+        "Conjunto 3 meses + Pañal Etapa 3",
+        "Conjunto 6 meses + Pañal Etapa 3",
+        "Conjunto 6 meses + Pañal Etapa 3",
+        "Conjunto 9 meses + Pañal Etapa 3",
+        "Conjunto 9 meses + Pañal Etapa 3",
+        "Sudadera 3 - 6 meses + Pañal Etapa 4",
+        "Sudadera 6- 9 meses + Pañal Etapa 4",
+        "Ruana + Pañal etapa 4",
+        "Fajeros +Camisas de valletilla 3 - 6 meses"
+      ],
+      "Cuidado": [
+        "Kit de baño + Pañitos",
+        "Kit de aseo + Pañitos",
+        "Termo 1. 5Ltrs + Pañitos",
+        "Bañera o Tina plegable + Pañitos",
+        "Toalla y Termometro + Pañitos",
+        "Toallas de Lactancia  + Pañales etapa 0",
+        "Pimera muda + Pañales etapa 1",
         "Pañalera tipo morral + Pañal Etapa 3",
-        "Almohada antireflujo + Pañitos"
-      ]
-    },
-    {
-      categoria: "🧸 Artículos grandes",
-      items: [
+        "Teteros",
+        "Vasenilla",
+        "Almohada antireflujo",
+        "Calentador Esterilizador Biberones (Link de idea)",
+        "Fullar"
+      ],
+      "Grandes": [
         "Coche tipo maleta + Silla de carro",
-        "Cómoda Cambiador (puede ser regalo grupal)",
+        "Comoda Cambiador (puede ser regalo grupal)",
         "Ropero Closet (puede ser regalo grupal)",
-        "Gimnasio",
-        "Móvil",
-        "Tapete Alfombra Plegable Reversible",
-        "Cargador Silla Ergonómico",
-        "Fular",
-        "Set vajilla bebé silicona",
         "Andadera",
-        "Silla comedor"
+        "Silla comedor",
+        "Cargador Silla Ergonomico",
+        "Set vajilla bebé silicona",
+        "Tapete Alfombra Plegable Reversible",
+        "Paseador",
+        "Mobil"
       ]
-    }
-  ];
+    };
 
-  const contenedor = document.getElementById("lista-regalos");
+    const contenedor = document.getElementById('contenedor-regalos');
 
-  regalos.forEach((cat) => {
-    const titulo = document.createElement("h3");
-    titulo.className = "section-title";
-    titulo.textContent = cat.categoria;
-    contenedor.appendChild(titulo);
+    Object.keys(regalos).forEach(categoria => {
+      const seccion = document.createElement('div');
+      seccion.className = 'categoria';
+      const titulo = document.createElement('h2');
+      titulo.textContent = categoria;
+      seccion.appendChild(titulo);
 
-    cat.items.forEach((item, index) => {
-      const div = document.createElement("div");
-      div.className = "gift-item";
-      const id = cat.categoria.replace(/\s/g, '') + "-" + index;
+      regalos[categoria].forEach(nombre => {
+        const item = document.createElement('div');
+        item.className = 'regalo';
 
-      div.innerHTML = `
-        <h4 id="label-${id}">${item}</h4>
-        <button id="boton-${id}" onclick="mostrarFormulario('${id}')">Lo elijo 🎁</button>
-        <div class="form-container" id="form-${id}" style="display: none;">
-          <input type="text" id="nombre-${id}" placeholder="Tu nombre" />
-          <textarea id="mensaje-${id}" placeholder="Mensaje para Samuel (opcional)"></textarea>
-          <button onclick="confirmar('${id}')">Confirmar elección ✅</button>
-        </div>
-      `;
-      contenedor.appendChild(div);
+        const span = document.createElement('span');
+        span.textContent = nombre;
+
+        const boton = document.createElement('button');
+        boton.textContent = 'Lo elijo 🎁';
+        boton.onclick = () => {
+          const nombreUsuario = prompt("¿Cuál es tu nombre?");
+          if (nombreUsuario) {
+            span.innerHTML = `${nombre} <br><strong>Reservado por:</strong> ${nombreUsuario}`;
+            boton.disabled = true;
+            boton.textContent = '✅ Elegido';
+          }
+        };
+
+        item.appendChild(span);
+        item.appendChild(boton);
+        seccion.appendChild(item);
+      });
+
+      contenedor.appendChild(seccion);
     });
-  });
-
-  function mostrarFormulario(id) {
-    document.getElementById(`form-${id}`).style.display = "block";
-    document.getElementById(`boton-${id}`).disabled = true;
-  }
-
-  function confirmar(id) {
-    const nombre = document.getElementById(`nombre-${id}`).value.trim();
-    if (nombre === "") {
-      alert("Por favor escribe tu nombre para confirmar el regalo.");
-      return;
-    }
-
-    const label = document.getElementById(`label-${id}`);
-    label.innerText += ` (Ya fue elegido por ${nombre})`;
-
-    document.getElementById(`form-${id}`).style.display = "none";
-    document.getElementById(`boton-${id}`).style.display = "none";
-  }
-</script>
-
+  </script>
 </body>
+
 </html>
